@@ -1,0 +1,188 @@
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: url("/assets/img/hauptseitenhintergrund.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background-image: url("/assets/img/hauptseitenhintergrund.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  animation: backgroundScroll 80s linear infinite;
+}
+
+@keyframes backgroundScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.app-kopfzeile {
+  position: relative;
+  z-index: 2;
+}
+
+.kategorien {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.kategorie {
+  margin-bottom: 20px;
+}
+
+.kategorie-container {
+  margin-top: 25px;
+  background-color: rgba(0, 0, 0, 0.518);
+  border-radius: 8px;
+  padding: 20px;
+  min-height: 500px; /* Hier setzen Sie die minimale Höhe des Containers */
+  position: relative; /* Neue Positionierung für den Container */
+}
+
+h2 {
+  font-size: 25px;
+  margin-bottom: 10px;
+  color: #fff;
+  text-shadow: 2px 2px 4px black;
+}
+
+.filme {
+  display: flex;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+  overflow-y: hidden;
+}
+
+.film-container {
+  display: flex;
+  flex-wrap: nowrap;
+  transition: transform 0.3s ease;
+  position: relative; /* Neue Anpassung: Setze die Position für den Container */
+}
+
+.film {
+  margin-right: 10px;
+}
+
+.film img {
+  width: 300px;
+  height: 450px;
+  transition: transform 0.3s ease;
+}
+
+.film img:hover {
+  transform: scale(1.05);
+}
+
+.scroll-btn {
+  position: absolute; /* Positionierung für die Buttons innerhalb des Containers */
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block; /* Stelle sicher, dass die Scroll-Buttons immer sichtbar sind */
+}
+
+.scroll-btn.prev {
+  left: 0;
+}
+
+.scroll-btn.next {
+  right: 0;
+}
+
+.scroll-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Neue Anpassung: Setze die Z-Index-Eigenschaft, damit die Buttons über den Filmbildern liegen */
+.scroll-btn {
+  z-index: 1;
+}
+
+.film-button {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.button-container {
+  padding: 90px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0px;
+}
+
+.genre-button2 {
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Zentrieren des Textes vertikal */
+  background: none; /* Hintergrund entfernen */
+  border: none; /* Rand entfernen */
+  color: white; /* Schriftfarbe auf Weiß ändern */
+  font-size: 28px; /* Schriftgröße erhöhen */
+  line-height: 1.5; /* Zeilenabstand anpassen */
+  text-align: center;
+  text-decoration: none;
+  padding: 0; /* Padding entfernen */
+  width: fit-content; /* Breite basierend auf dem Textinhalt */
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+.genre-button {
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Zentrieren des Textes vertikal */
+  background: none; /* Hintergrund entfernen */
+  border: none; /* Rand entfernen */
+  color: white; /* Schriftfarbe auf Weiß ändern */
+  cursor: pointer;
+  font-size: 28px; /* Schriftgröße erhöhen */
+  line-height: 1.5; /* Zeilenabstand anpassen */
+  text-align: center;
+  text-decoration: none;
+  padding: 0; /* Padding entfernen */
+  width: fit-content; /* Breite basierend auf dem Textinhalt */
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+.genre-button:hover {
+  transform: scale(1.1);
+  background-color: rgba(90, 89, 89, 0.7);
+}
+
+.genre-button:focus {
+  outline: none;
+}

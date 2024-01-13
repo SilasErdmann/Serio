@@ -1,0 +1,48 @@
+<div class="page-container">
+  <div class="background-image"></div>
+  <div class="container">
+    <div class="content">
+      <h1>PROFIL BEARBEITEN</h1>
+
+      <div *ngIf="!selectedOption" class="button-container">
+        <button class="custom-button button1" (click)="selectOption(1)">Benutzernamen ändern</button>
+        <button class="custom-button button2" (click)="selectOption(2)">E-mail ändern</button>
+        <button class="custom-button button3" (click)="selectOption(3)">Passwort ändern</button>
+        <button class="custom-button delete-button" (click)="selectOption(4)">Account löschen</button>
+      </div>
+
+      <ng-container *ngIf="selectedOption">
+        <div class="fade-container">
+          <div class="selected-option-container">
+            <h2 *ngIf="selectedOption === 1">Benutzernamen ändern</h2>
+            <h2 *ngIf="selectedOption === 2">E-mail ändern</h2>
+            <h2 *ngIf="selectedOption === 3">Passwort ändern</h2>
+            <h2 *ngIf="selectedOption === 4">Möchten Sie den Account wirklich löschen?</h2>
+
+            <input type="text" [(ngModel)]="neuerBenutzername" placeholder="Neuer Benutzername" *ngIf="selectedOption === 1">
+            <input type="text" [(ngModel)]="neueEmail" placeholder="Neue E-mail" *ngIf="selectedOption === 2">
+            <input type="text" [(ngModel)]="neuesPasswort" placeholder="Neues Passwort" *ngIf="selectedOption === 3">
+
+            <div *ngIf="selectedOption !== 4">
+              <button class="change-button" (click)="confirm()">Bestätigen</button>
+            </div>
+
+            <div *ngIf="selectedOption === 4" class="delete-buttons">
+              <button class="custom-button delete-button-yes" (click)="deleteAccount()">Ja</button>
+              <button class="custom-button delete-button-no" (click)="cancelDelete()">Nein</button>
+            </div>
+
+            <div [@flyInOut] *ngIf="updateStatus === 'success'" class="update-success">
+              Änderung erfolgreich! Du wirst in {{ countdown }} Sekunden wieder zu den Einstellungen zurückgeleitet.
+            </div>
+
+            <div [@flyInOut] *ngIf="updateStatus === 'error'" class="update-error">
+              Fehler bei der Aktualsierung!
+            </div>
+
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

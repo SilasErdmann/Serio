@@ -1,0 +1,30 @@
+<div class="background"></div>
+
+<div class="container">
+  <h2 class="genre-name">{{genreName}}</h2>
+
+  <div class="toggle-container">
+    <div class="toggle-wrapper">
+      <div class="toggle-button-container">
+        <button class="toggle-button" [class.active]="showMovies" (click)="toggleDisplay(true)">
+          <span class="toggle-text">Filme</span>
+        </button>
+        <button class="toggle-button" [class.active]="!showMovies" (click)="toggleDisplay(false)">
+          <span class="toggle-text">Serien</span>
+        </button>
+        <div class="toggle-indicator" [style.transform]="toggleIndicatorTransform"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="media-container">
+    <div class="media-card" *ngFor="let media of displayedMedia" [class.fade-in]="mediaLoaded">
+      <a [routerLink]="['/filmanzeige', media.id]">
+        <button class="media-button">
+          <img [src]="media.image" alt="Poster" (load)="onImageLoad()">
+        </button>
+      </a>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,24 @@
+<div class="background">
+  <h1>Watchlist</h1>
+  <div class="scroll-container">
+    <div class="container">
+      <!-- Überprüfung, ob es Medien in der Watchlist gibt -->
+      <div *ngIf="medien.length > 0; else noMedienMessage" class="watchlist">
+        <div class="item-container">
+          <div class="item" *ngFor="let media of medien">
+            <a [routerLink]="['/filmanzeige', media.mediaId]">
+              <img [src]="media.image" alt="Media">
+            </a>
+            <button class="remove-button" (click)="deleteWatchlist(media.mediaId)">Entfernen</button>
+          </div>
+        </div>
+      </div>
+      <!-- Anzeige der Nachricht, wenn keine Medien vorhanden sind -->
+      <ng-template #noMedienMessage>
+        <div class="watchlist-empty">
+          <p>Keine Medien in der Watchlist vorhanden.</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

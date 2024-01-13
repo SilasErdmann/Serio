@@ -1,0 +1,30 @@
+<header>
+  <div class="logo-container">
+    <img class="logo" src="./assets/img/logo.png">
+    <div class="navigation-links">
+      <a routerLink="/hauptseite" routerLinkActive="active">Hauptseite</a>
+      <a routerLink="/genre" routerLinkActive="active">Genres</a>
+    </div>
+  </div>
+
+  <div class="right-section">
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Suche" (keyup.enter)="saveAndOutputSearchInput()">
+    </div>
+
+    <!-- Anzeige des Benutzernamens -->
+    <div *ngIf="username" class="username-container" (mouseenter)="openUsernameDropdown()" (mouseleave)="closeUsernameDropdown()">
+      <div class="custom-dropdown" [class.open]="isUsernameDropdownOpen">
+        <div class="username-dropdown-toggle">{{ username }}</div>
+        <div class="dropdown-menu username-dropdown-menu">
+          <a class="dropdown-item" routerLink="/watchlist" routerLinkActive="active">Watchlist</a>
+          <a class="dropdown-item" routerLink="/benutzereinstellungen" routerLinkActive="active">Einstellungen</a>
+          <a class="dropdown-item" href="#" (click)="logout()">Log Out</a>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!username" class="login-container">
+      <a class="dropdown-item" routerLink="/login">Log In</a>
+    </div>
+  </div>
+</header>

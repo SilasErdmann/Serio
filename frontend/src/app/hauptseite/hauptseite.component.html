@@ -1,0 +1,101 @@
+<div class="background"></div>
+
+<div class="kategorien">
+  <div class="kategorie">
+    <div class="kategorie-container">
+      <h2>
+        <button class="genre-button2">
+          Aktuelle Veröffentlichungen
+        </button>
+      </h2>
+      <div class="filme">
+        <button class="scroll-btn prev" (click)="LatestMediaScrollPrevious()">&#8249;</button>
+        <div class="film-container">
+          <div class="film" *ngFor="let media of latestMedien">
+            <a [routerLink]="['/filmanzeige', media.id]">
+            <img [src]="media.image" alt="Media Image">
+            </a>
+            <button class="film-button">
+            </button>
+          </div>
+        </div>
+        <button class="scroll-btn next" (click)="LatestMediaScrollNext()">&#8250;</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="kategorien">
+  <div class="kategorie">
+    <div class="kategorie-container">
+      <h2>
+        <button class="genre-button2">
+          Top-Bewertungen
+        </button>
+      </h2>
+      <div class="filme">
+        <button class="scroll-btn prev" (click)="BestRatedMediaScrollPrevious()">&#8249;</button>
+        <div class="film-container">
+          <div class="film" *ngFor="let media of bestRatedMedien">
+            <a [routerLink]="['/filmanzeige', media.id]">
+            <img [src]="media.image" alt="Media Image">
+            </a>
+            <button class="film-button">
+            </button>
+          </div>
+        </div>
+        <button class="scroll-btn next" (click)="BestRatedMediaScrollNext()">&#8250;</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="kategorien">
+  <div class="kategorie">
+    <div class="kategorie-container">
+      <h2>
+        <button class="genre-button2">
+          Demnächst
+        </button>
+      </h2>
+      <div class="filme">
+        <button class="scroll-btn prev" (click)="UpcomingMediaScrollPrevious()">&#8249;</button>
+        <div class="film-container">
+          <div class="film" *ngFor="let media of upcomingMedien">
+            <a [routerLink]="['/filmanzeige', media.id]">
+            <img [src]="media.image" alt="Media Image">
+            </a>
+            <button class="film-button">
+            </button>
+          </div>
+        </div>
+        <button class="scroll-btn next" (click)="UpcomingMediaScrollNext()">&#8250;</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="kategorien">
+  <div class="kategorie" *ngFor="let kategorie of filmkategorien; let i = index">
+    <div class="kategorie-container">
+      <h2>
+        <button class="genre-button" (click)="navigateToGenre(kategorie.genreId)">
+          {{ kategorie.name }}
+        </button>
+      </h2>
+      <div class="filme">
+        <button class="scroll-btn prev" (click)="scroll('prev', kategorie)">&#8249;</button>
+        <div class="film-container" #filmContainer [style.transform]="'translateX(' + scrollPositions[i] + 'px)'">
+          <div class="film" *ngFor="let film of kategorie.filme">
+            <a [routerLink]="['/filmanzeige', film.id]">
+              <button class="film-button">
+                <img [src]="film.bildUrl" alt="{{ film.name }}">
+              </button>
+            </a>
+          </div>
+        </div>
+        <button class="scroll-btn next" (click)="scroll('next', kategorie)">&#8250;</button>
+      </div>
+    </div>
+  </div>
+</div>

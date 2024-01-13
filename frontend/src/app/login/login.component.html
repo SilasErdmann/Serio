@@ -1,0 +1,41 @@
+<div class="background-image"></div>
+
+<div class="login-container centered" *ngIf="!showRegistration">
+  <h2 class="animate__animated animate__fadeIn">LOGIN</h2>
+  <form (submit)="login($event)" class="animate__animated animate__fadeIn" [formGroup]="loginForm">
+    <div class="form-group">
+      <input formControlName="username" type="text" id="username" name="username" [(ngModel)]="username" placeholder="Benutzername" required>
+
+    </div>
+    <div class="form-group">
+      <input formControlName="password" type="password" id="password" name="password" [(ngModel)]="password" placeholder="Passwort" required>
+
+      <div *ngIf="errorMessages.username !== ''" class="error-message">{{ errorMessages.username }}</div>
+    </div>
+    <button type="submit" class="animate__animated animate__fadeInUp">Anmelden</button>
+    <button type="button" class="register-button animate__animated animate__fadeIn" (click)="showRegistrationForm()">Noch kein Konto? Hier registrieren</button>
+  </form>
+</div>
+
+<div class="registration-container centered" *ngIf="showRegistration">
+  <h2 class="animate__animated animate__fadeIn">Registrierung</h2>
+  <form (submit)="register($event)" class="animate__animated animate__fadeIn" [formGroup]="registrationForm">
+    <div class="form-group">
+      <input formControlName="username" type="text" id="username" name="username" [(ngModel)]="username" placeholder="Benutzername" required>
+      <div *ngIf="errorMessages.username !== ''" class="error-message">{{ errorMessages.username }}</div>
+
+    </div>
+    <div class="form-group">
+      <input formControlName="password" type="password" id="password" name="password" [(ngModel)]="password" placeholder="Passwort" required>
+
+    </div>
+    <div class="form-group">
+      <input formControlName="email" type="email" id="email" name="email" [(ngModel)]="email" placeholder="E-Mail" required>
+      <div *ngIf="errorMessages.email !== ''" class="error-message">{{ errorMessages.email }}</div>
+
+    </div>
+    <button type="submit" class="animate__animated animate__fadeInUp">Registrieren</button>
+    <button type="button" class="back-button animate__animated animate__fadeIn" (click)="showLoginForm()">Zurück zum Login</button>
+  </form>
+</div>
+

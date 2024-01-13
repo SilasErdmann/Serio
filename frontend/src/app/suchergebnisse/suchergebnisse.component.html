@@ -1,0 +1,13 @@
+<div class="background"></div>
+<div class="container">
+  <h2 class="genre-name">Suchergebnisse</h2>
+  <div class="media-container-wrapper"> <!-- Neu hinzugefügt -->
+    <div class="media-container"> <!-- Verschoben in den Wrapper -->
+      <div class="media-card fade-in" *ngFor="let movie of movies">
+        <button class="media-button">
+          <img [src]="movie.image" alt="Movie Image" (click)="navigateToFilmAnzeige(movie.id)">
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

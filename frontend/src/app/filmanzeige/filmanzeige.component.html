@@ -1,0 +1,161 @@
+<div class="background top-margin"></div>
+<div class="container">
+  <div class="notification" *ngIf="showNotification">{{ notificationText }}</div>
+  <div class="content-container">
+
+    <h2 class="film-name">{{ filmname }}</h2>
+
+    <div class="film-details">
+      
+      <p *ngIf="seasons.length === 0; else seriesContent">Film</p>
+
+      <ng-template #seriesContent>
+        <p>Serie</p>
+      </ng-template>
+
+      <p class="release-date">Erscheinungsdatum: {{ formatDate(erscheinungsdatum!) }}</p>
+
+    </div>
+
+    <button *ngIf="!isInWatchlist()" class="button-add-to-watchlist" (click)="createWatchlist()">+ Watchlist</button>
+    <button *ngIf="isInWatchlist()" class="button-add-to-watchlist" (click)="deleteWatchlist()">- Watchlist</button>
+
+
+    <div class="flex-container">
+      <div class="filmplakat">
+        <img [src]="img" alt="Filmplakat" class="filmplakat">
+      </div>
+
+      <div class="video-player-wrapper">
+        <vg-player (onPlayerReady)="videoPlayerInit($event)">
+          <vg-overlay-play></vg-overlay-play>
+          <vg-buffering></vg-buffering>
+          <vg-scrub-bar>
+            <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+            <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+          </vg-scrub-bar>
+          <vg-controls>
+            <vg-play-pause></vg-play-pause>
+            <vg-playback-button></vg-playback-button>
+            <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+            <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+            <vg-mute class="mute-button"></vg-mute>
+            <vg-volume></vg-volume>
+            <vg-fullscreen class="fullscreen-button"></vg-fullscreen>
+          </vg-controls>
+          <video #media [vgMedia]="$any(media)" [src]="currentVideo.src" id="singleVideo" preload="auto" crossorigin></video>
+        </vg-player>
+      </div>
+
+    </div>
+    <div class="like-dislike-container">
+      <button [class]="getLikeClass()" (click)="toggleLike()">
+        Likes: {{ likeCount }}
+      </button>
+      <button [class]="getDislikeClass()" (click)="toggleDislike()">
+        Dislikes: {{ dislikeCount }}
+      </button>
+    </div>
+    
+    <div *ngIf="isPositivePercentageValid()" class="percentage-container">
+      <div [ngStyle]="{ 'flex': positivePercentage + ' 0 0' }" [ngClass]="getPositivColor(positivePercentage)">
+        <span>{{ positivePercentage }}%</span>
+      </div>
+      <div [ngStyle]="{ 'flex': negativePercentage + ' 0 0' }" [ngClass]="getNegativColor(negativePercentage)">
+        <span>{{ negativePercentage }}%</span>
+      </div>
+    </div>
+    
+    <div class="genre-tags">
+      <ul>
+        <li *ngFor="let genre of genres" [routerLink]="['/genre', genre.id]">
+          {{ genre.name }}
+        </li>
+      </ul>
+    </div>
+    
+  
+    <div class="beschreibung">
+      <p>Name: {{ filmname }}</p>
+      <p>FSK: {{ fsk }}</p>
+      <p>Beschreibung: {{ filmbeschreibung }}</p>
+    </div>
+
+    <div class="staffel-container" *ngIf="seasons.length > 0">
+      <h2>Staffeln</h2>
+      <ul>
+        <li *ngFor="let season of seasons" (click)="toggleEpisodes(season)">
+          <p>Staffel {{ season.number }}</p>
+          <p *ngIf="!season.showEpisodes">{{ season.description }}</p>
+          <div *ngIf="season.showEpisodes">
+            <ul class="episode-list">
+              <li *ngFor="let episode of episodes">
+                <p>Episode {{ episode.number }} · {{ episode.name }}</p>
+                <p>{{ episode.description }}</p>
+                <p>{{ episode.runtime }} min</p>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="schauspieler-container" *ngIf="contributors.length > 0">
+      <h2>Mitwirkende</h2>
+      <ul>
+        <li *ngFor="let contributor of contributors">
+          <img [src]="contributor.image" alt="{{ contributor.first_name }} {{ contributor.last_name }}">
+          <p class="contributor-name">{{ contributor.first_name }} {{ contributor.last_name }}</p>
+          <p class="role">{{ contributor.role }}</p>
+        </li>
+      </ul>
+    </div>  
+
+    <div class="aehnliche-filme-slider">
+      <h2>Ähnliche Filme</h2>
+      <div class="film-container">
+        <div class="film-card" *ngFor="let media of medien">
+          <a class="film-link" [routerLink]="['/filmanzeige', media.id]">
+            <img [src]="media.image" alt="Ähnlicher Film">
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="comment-input-container">
+      <h3 class="comment-title">Kommentare</h3>
+      <div class="comment-input-wrapper">
+        <input [(ngModel)]="kommentarText" placeholder="Schreibe deinen Kommentar hier" class="comment-input" />
+        <button (click)="kommentarSpeichern()" class="comment-button">Kommentar speichern</button>
+      </div>
+    </div>
+
+    <div class="comments-container">
+      <h3 class="comment-title">Kommentare</h3>
+      <ul>
+        <li *ngFor="let kommentar of kommentare">
+          
+          <p>
+            <span class="comment-username">{{ kommentar.username }}</span>
+            <span class="comment-date-time">{{ formatDate(kommentar.date) }} - {{ formatTime(kommentar.date) }}</span>
+          </p>          
+          <p class="comment-text">{{ kommentar.text }}</p>
+          <p>---</p>
+        </li>
+      </ul>
+      <div class="comment-count-container">
+        <p class="comment-count">{{ kommentare.length }} Kommentar{{ kommentare.length !== 1 ? 'e' : '' }}</p>
+      </div>
+    </div>
+
+    <div class="overlay" *ngIf="showOverlay">
+      <div class="overlay-content">
+        <button (click)="closeOverlay()" class="close-button">Schließen</button>
+        <div class="film-details">
+          <h2>{{ filmname }}</h2>
+          <p>{{ filmbeschreibung }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,637 @@
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: url("/assets/img/hauptseitenhintergrund.jpg");
+  background-size: cover;
+  background-repeat: repeat;
+}
+
+.top-margin {
+  margin-top: 60px;
+}
+.comment-text {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.comment-date {
+  font-size: 14px;
+}
+
+.comment-time {
+  font-size: 14px;
+}
+.container {
+  position: relative;
+  height: calc(100% - 50px);
+  width: calc(100% - 50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+  z-index: 1;
+  margin: 25px;
+}
+
+.notification {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 5px;
+  z-index: 9999;
+}
+
+.content-container {
+  position: relative;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 80%;
+  max-width: 1300px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+}
+
+.flex-container {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap; /* Allow items to wrap to the next line when there's not enough space */
+}
+
+.film-name {
+  font-size: 40px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  margin-bottom: 8px;
+}
+
+.film-details {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  
+}
+
+.film-details .film-info {
+  margin: 0;
+  margin-right: 20px;
+}
+
+.filmplakat {
+  width: 350px;
+  height: 500px;
+  margin-right: 10px;
+
+  @media (max-width: 768px) {
+    width: 250px;
+    height: 350px;
+  }
+
+}
+
+.like-dislike-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.comment-input-container {
+  margin-bottom: 16px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.comments-container h3.comment-title {
+  color: black;
+}
+
+.comment-input {
+  width: 92%;
+  height: 40px;
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 25px;
+  font-size: 14px;
+}
+
+.comment-count-container {
+  text-align: right;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.comment-count {
+  margin: 0;
+  color: #333;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.show-comments-button {
+  background-color: transparent;
+  border: none;
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 16px;
+  text-decoration: underline;
+}
+
+.show-comments-button:hover {
+  color: lightgray;
+}
+
+.comment-button {
+  height: 40px;
+  margin-right: 8px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+  transition: transform 0.3s, background-color 0.3s;
+  background-color: white;
+  color: black;
+}
+
+.comment-button:hover {
+  background-color: lightgray;
+  transform: scale(1.05);
+}
+
+.comments-container {
+  margin-top: 30px;
+  text-align: center;
+  color: white;
+}
+
+.comments-container h3 {
+  margin-bottom: 8px;
+  color: white;
+}
+
+.comments-container ul {
+  list-style-type: none;
+  padding: 0;
+  max-height: 350px;
+  overflow-y: scroll;
+}
+
+.comments-container li {
+  margin-bottom: 8px;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: px;
+}
+
+.comments-container li.selected {
+  background-color: #f0f0f0; /* oder eine andere Hervorhebungsfarbe, die du bevorzugst */
+}
+
+.comment-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333; /* oder eine andere Farbe, die du bevorzugst */
+  margin-bottom: 8px;
+}
+
+.comment-date-time {
+  font-size: 14px;
+  color: #888; /* oder eine andere Farbe, die du bevorzugst */
+}
+
+.comment-username {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-right: 10px;
+  color: #333;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.overlay-content {
+  position: relative;
+  max-width: 600px;
+  width: 80%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: #777;
+}
+
+.film-details {
+  margin-top: 20px;
+
+  /* Erstelle eine Unterklasse für das Erscheinungsdatum */
+.release-date {
+  position: absolute; /* Positioniere das Erscheinungsdatum absolut */
+  right: 70px; /* Verschiebe das Erscheinungsdatum 50px nach rechts */
+}
+}
+
+.fullscreen-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  background-image: url("/assets/img/fullscreen.jpeg");
+  width: 24px; // Breite des Bildes anpassen
+  height: 24px; //Höhe des Bildes anpassen
+  background-size: cover;
+}
+
+.play-pause-button {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  background-image: url("/assets/img/play.jpg");
+  width: 40px; // Breite des Play-Symbols anpassen
+  height: 40px; // Höhe des Play-Symbols anpassen
+  background-size: cover;
+}
+
+.mute-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+  background-image: url("/assets/img/mute.png");
+  width: 24px; // Breite des Mute-Symbols anpassen
+  height: 24px; //Höhe des Mute-Symbols anpassen
+  background-size: cover;
+}
+
+/* Stile für die Container, die die Like- und Dislike-Buttons enthalten */
+.like-dislike-container {
+  /* Stile für den Like-Button */
+  .like-button,
+  .dislike-button {
+    width: 175px; /* Breite der Buttons */
+    height: 40px; /* Höhe der Buttons */
+    margin-right: 0; /* Kein rechter Abstand zwischen den Buttons */
+    border: none; /* Entfernt die Button-Umrandung */
+    cursor: pointer; /* Ändert den Mauszeiger, wenn er über den Button schwebt, um anzuzeigen, dass er anklickbar ist */
+    display: flex; /* Aktiviert das Flexbox-Layout für die Buttons */
+    align-items: center; /* Zentriert den Inhalt der Buttons vertikal */
+    justify-content: center; /* Zentriert den Inhalt der Buttons horizontal */
+    font-size: 14px; /* Setzt die Schriftgröße der Buttons auf 14 Pixel */
+    font-weight: bold; /* Setzt die Schriftstärke der Buttons auf fett */
+    text-transform: uppercase; /* Konvertiert den Text in Großbuchstaben */
+    color: white; /* Setzt die Schriftfarbe der Buttons auf Weiß */
+    transition: transform 0.3s, background-color 0.3s; /* Fügt eine sanfte Übergangsanimation für die Veränderung von Skalierung und Hintergrundfarbe hinzu */
+  }
+
+  /* Stile für den Like-Button */
+  .like-button {
+    background-color: lightgreen; /* Hintergrundfarbe des Like-Buttons */
+    border-radius: 0; /* Keine abgerundeten Ecken */
+
+    /* Stile für den Like-Button, wenn er den "liked" Klassenattribut hat */
+    &.liked {
+      transform: scale(1.05); /* Skaliert den Button um 5% größer */
+      background-color: green; /* Hintergrundfarbe des Like-Buttons im "liked" Zustand */
+    }
+  }
+
+  /* Stile für den Like-Button, wenn er im Hover-Zustand ist */
+  .like-button:hover {
+    background-color: darkgreen; /* Hintergrundfarbe des Like-Buttons im Hover-Zustand */
+    transform: scale(1.05); /* Skaliert den Button um 5% größer */
+  }
+
+  /* Stile für den Dislike-Button */
+  .dislike-button {
+    background-color: lightcoral; /* Hintergrundfarbe des Dislike-Buttons */
+    border-radius: 0; /* Keine abgerundeten Ecken */
+
+    /* Stile für den Dislike-Button, wenn er den "disliked" Klassenattribut hat */
+    &.disliked {
+      transform: scale(1.05); /* Skaliert den Button um 5% größer */
+      background-color: red; /* Hintergrundfarbe des Dislike-Buttons im "disliked" Zustand */
+      box-shadow: inset 0px -5px 10px rgba(0, 0, 0, 0.2); /* Fügt einen Schatten an der unteren Kante des Buttons hinzu */
+    }
+  }
+
+  /* Stile für den Dislike-Button, wenn er im Hover-Zustand ist */
+  .dislike-button:hover {
+    background-color: darkred; /* Hintergrundfarbe des Dislike-Buttons im Hover-Zustand */
+    transform: scale(1.05); /* Skaliert den Button um 5% größer */
+  }
+}
+
+/* Der Hauptcontainer für die Schauspieler (Mitwirkende), wird nur angezeigt, wenn es Mitwirkende gibt */
+.schauspieler-container {
+  /* Styling für die Überschrift "Mitwirkende" */
+  h2 {
+    text-align: left; /* Textausrichtung der Überschrift auf links */
+    margin-bottom: 20px; /* Unterer Außenabstand der Überschrift: 20px */
+    margin-top: 20px; /* Oberer Außenabstand der Überschrift: 20px */
+  }
+
+  /* Styling für die ungeordnete Liste */
+  ul {
+    list-style-type: none; /* Entfernt die Aufzählungszeichen vor den Listenelementen */
+    padding: 0; /* Entfernt den Innenabstand der ungeordneten Liste */
+    margin: 0; /* Entfernt den Außenabstand der ungeordneten Liste */
+    display: flex; /* Aktiviert das Flexbox-Layout für die Liste */
+    flex-wrap: wrap; /* Bestimmt, wie die Listenelemente in mehrere Zeilen umgebrochen werden */
+    gap: 20px; /* Setzt den Abstand zwischen den Listenelementen auf 20px */
+
+    /* Styling für jedes Listenelement (Mitwirkende) */
+    li {
+      display: flex; /* Aktiviert das Flexbox-Layout für jedes Listenelement */
+      flex-direction: column; /* Legt die Anordnung der Inhalte in einem Listenelement in einer Spalte fest */
+      align-items: center; /* Zentriert die Inhalte horizontal im Listenelement */
+
+      /* Styling für das Bild jedes Mitwirkenden */
+      img {
+        width: 100px; /* Setzt die Breite des Bildes auf 100px */
+        height: 120px; /* Setzt die Höhe des Bildes auf 120px */
+        object-fit: cover; /* Skaliert das Bild so, dass es vollständig im Bildbereich enthalten ist, ohne das Seitenverhältnis zu ändern */
+        border-radius: 50%; /* Rundet die Ecken des Bildes ab, um es zu einem Kreis zu machen */
+      }
+
+      /* Styling für den Namen jedes Mitwirkenden */
+      p.contributor-name {
+        margin-top: 5px; /* Oberer Außenabstand des Namens: 5px */
+        text-align: center; /* Textausrichtung des Namens auf center */
+        font-weight: bold; /* Setzt die Schriftstärke des Namens auf fett */
+      }
+
+      /* Styling für die Rolle jedes Mitwirkenden */
+      p.role {
+        margin-top: 0px; /* Oberer Außenabstand der Rolle: 0px */
+        text-align: center; /* Textausrichtung der Rolle auf center */
+        font-size: 12px; /* Setzt die Schriftgröße der Rolle auf 12px */
+        margin-bottom: 20px; /* Unterer Außenabstand der Rolle: 20px */
+      }
+    }
+  }
+}
+
+/* Der Hauptcontainer für den Video-Player */
+.video-player-wrapper {
+  height: 52vh; /* Setzt die Höhe des Video-Players auf 52% der Höhe des Viewports */
+  width: 96vh;
+  overflow: hidden; /* Verhindert das Überlaufen von Inhalten aus dem Container */
+  position: relative; /* Setzt die Position des Containers auf "relative", um Positionierungen von Kind-Elementen zu ermöglichen */
+
+  /* Stile für das eingebettete Video-Element innerhalb des Video-Players */
+  video {
+    width: 100%; /* Setzt die Breite des Video-Elements auf 100% des Elternelements (Video-Player) */
+    height: 100%; /* Setzt die Höhe des Video-Elements auf 100% des Elternelements (Video-Player) */
+    object-fit: contain; /* Skaliert das Video so, dass es vollständig im Video-Element enthalten ist, ohne das Seitenverhältnis zu ändern */
+  }
+}
+
+/* Der Hauptcontainer für die Staffeln, wird nur angezeigt, wenn es Staffeln gibt */
+.staffel-container {
+  background-color: rgba(
+    240,
+    240,
+    240,
+    0.75
+  ); /* Hintergrundfarbe des Containers mit leichter Transparenz */
+  padding: 0px 20px; /* Innenabstand des Containers oben/unten: 0px, links/rechts: 20px */
+  border-radius: 8px; /* Rundet die Ecken des Containers ab */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Fügt einen subtilen Schatten zum Container hinzu */
+  margin-top: 20px; /* Oberer Außenabstand des Containers: 20px */
+  margin-bottom: 15px; /* Unterer Außenabstand des Containers: 15px */
+
+  h2 {
+    font-size: 24px; /* Setzt die Schriftgröße der Überschrift auf 24 Pixel */
+    margin-bottom: 10px; /* Setzt den unteren Außenabstand der Überschrift auf 10 Pixel */
+  }
+
+  ul {
+    list-style-type: none; /* Entfernt die Aufzählungszeichen vor den Listenelementen */
+    padding: 0; /* Entfernt den Innenabstand der ungeordneten Liste */
+    margin: 0; /* Entfernt den Außenabstand der ungeordneten Liste */
+
+    li {
+      padding: 10px; /* Innenabstand der Listenelemente oben/unten: 10px, links/rechts: standardmäßig */
+      border-bottom: 1px solid #ccc; /* Fügt eine graue Trennlinie zwischen den Listenelementen hinzu */
+      cursor: pointer; /* Ändert den Mauszeiger, wenn er über das Listenelement schwebt, um anzuzeigen, dass es anklickbar ist */
+
+      &:last-child {
+        border-bottom: none; /* Entfernt die untere Trennlinie des letzten Listenelements */
+      }
+
+      p {
+        margin: 0; /* Entfernt den Außenabstand der Absätze */
+        font-size: 16px; /* Setzt die Schriftgröße der Absätze auf 16 Pixel */
+        font-weight: bold; /* Setzt die Schriftstärke der Absätze auf fett */
+        line-height: 1.4; /* Setzt die Zeilenhöhe der Absätze auf 1.4 */
+
+        &:first-child {
+          color: #007bff; /* Setzt die Farbe für den "Staffel" Text auf blau */
+        }
+
+        &:last-child {
+          color: #555; /* Setzt die Farbe für die Beschreibung auf grau */
+          margin-top: 5px; /* Oberer Außenabstand der Beschreibung: 5px */
+          font-size: 14px; /* Setzt die Schriftgröße der Beschreibung auf 14 Pixel */
+          font-weight: normal; /* Setzt die Schriftstärke der Beschreibung auf normal (nicht fett) */
+        }
+      }
+
+      /* Hinzugefügt für die Episodenliste */
+      .episode-list {
+        list-style-type: none; /* Entfernt die Aufzählungszeichen vor den Listenelementen der Episodenliste */
+        padding-left: 20px; /* Linker Innenabstand der Episodenliste: 20px */
+
+        li {
+          padding-left: 10px; /* Linker Innenabstand der Episodenliste oben/unten: standardmäßig, links/rechts: 10px */
+
+          p {
+            font-size: 14px; /* Setzt die Schriftgröße der Absätze in der Episodenliste auf 14 Pixel */
+            font-weight: normal; /* Setzt die Schriftstärke der Absätze in der Episodenliste auf normal (nicht fett) */
+
+            &:first-child {
+              color: #007bff; /* Setzt die Farbe für die Episodennummer und den Namen auf blau */
+            }
+
+            &:last-child {
+              color: #555; /* Setzt die Farbe für die Laufzeit auf grau */
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.aehnliche-filme-slider {
+  margin-top: 20px;
+  text-align: center;
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .film-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .film-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .film-link {
+      display: block; /* Setzt den Anzeige-Typ auf Block, um den Link auf die gesamte Karte auszudehnen */
+      width: 100%; /* Setzt die Breite des Links auf 100% der Filmkarte */
+      height: 100%; /* Setzt die Höhe des Links auf 100% der Filmkarte */
+      cursor: pointer;
+      text-decoration: none; /* Entfernt die Standard-Textdekoration des Links */
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+  }
+}
+
+
+/* Styles für das Genre-Container-Div */
+.genre-tags {
+  p {
+    font-weight: bold;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: inline-block;
+      margin-right: 8px;
+      padding: 4px 8px;
+      background-color: #f2f2f2;
+      border-radius: 4px;
+      text-decoration: none; /* Entferne die unterstrichene Textdekoration */
+      color: #000; /* Ändere die Schriftfarbe auf Schwarz */
+      cursor: pointer; /* Zeige einen Zeigercursor an, wenn du über das Tag hoverst */
+    }
+  }
+}
+
+
+.rating-very-positive {
+  background-color: green;
+}
+
+.rating-positive {
+  background-color: green;
+}
+
+.rating-negative {
+  background-color: red;
+}
+
+.rating-very-negative {
+  background-color: red;
+}
+
+.percentage-container {
+  text-align: center;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  border-radius: 5px;
+  font-size: 20px;
+  width: 350px;
+  margin-bottom: 20px;
+  opacity: 70%;
+}
+
+.button-add-to-watchlist {
+  margin-top: 0px;
+  width: 200px;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #f2f2f2;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: lightgray;
+    transform: scale(1.05);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
